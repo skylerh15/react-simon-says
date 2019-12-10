@@ -2,6 +2,7 @@
     "name": "react-simon-says",
     "version": "0.1.0",
     "private": true,
+    "homepage": "https://skylerh15.github.io/react-simon-says",
     "dependencies": {
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
@@ -10,6 +11,7 @@
         "@types/node": "^12.12.16",
         "@types/react": "^16.9.16",
         "@types/react-dom": "^16.9.4",
+        "gh-pages": "^2.1.1",
         "lodash": "^4.17.15",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
