@@ -1,23 +1,21 @@
 import * as React from 'react';
 
-import AppContextProvider from './context/AppContext';
+import AppContextProvider from 'app/context/AppContext';
 
-import Board from './views/board';
+import Board from 'app/views/board';
 
 import { OutsideWrapper, MiddleWrapper, InnerContent } from './styles';
 
-const App = () => {
-    return (
-        <AppContextProvider>
-            <OutsideWrapper>
-                <MiddleWrapper>
-                    <InnerContent>
-                        <Board />
-                    </InnerContent>
-                </MiddleWrapper>
-            </OutsideWrapper>
-        </AppContextProvider>
-    );
-};
+const App = () => (
+    <AppContextProvider>
+        <OutsideWrapper>
+            <MiddleWrapper>
+                <InnerContent>
+                    <Board />
+                </InnerContent>
+            </MiddleWrapper>
+        </OutsideWrapper>
+    </AppContextProvider>
+);
 
 export default App;
