@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/react-simon-says/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/react-simon-says/static/js/main.aad5762c.chunk.js",
+    "main.js.map": "/react-simon-says/static/js/main.aad5762c.chunk.js.map",
+    "runtime-main.js": "/react-simon-says/static/js/runtime-main.77baba63.js",
+    "runtime-main.js.map": "/react-simon-says/static/js/runtime-main.77baba63.js.map",
+    "static/js/2.f9fd0892.chunk.js": "/react-simon-says/static/js/2.f9fd0892.chunk.js",
+    "static/js/2.f9fd0892.chunk.js.map": "/react-simon-says/static/js/2.f9fd0892.chunk.js.map",
+    "index.html": "/react-simon-says/index.html",
+    "precache-manifest.7e5fd3eac67010352f808139c22b6d68.js": "/react-simon-says/precache-manifest.7e5fd3eac67010352f808139c22b6d68.js",
+    "service-worker.js": "/react-simon-says/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/react-simon-says/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.f9fd0892.chunk.js.LICENSE": "/react-simon-says/static/js/2.f9fd0892.chunk.js.LICENSE",
+    "static/media/wood.jpg": "/react-simon-says/static/media/wood.97685270.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77baba63.js",
+    "static/js/2.f9fd0892.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.aad5762c.chunk.js"
+  ]
+}
