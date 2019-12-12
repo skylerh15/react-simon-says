@@ -42,7 +42,10 @@ const AppContextProvider: FC = ({ children }) => {
         showRoundColors(color);
     };
 
-    const startGame = () => createNewRoundData();
+    const startGame = () => {
+        toggleUserInput(false);
+        createNewRoundData();
+    };
 
     const showRoundColors = (colors: ButtonColor[]) => {
         const emptyArray = range(colors.length).map(() => null);

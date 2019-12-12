@@ -14,13 +14,14 @@ export const SimonButton = styled.div<SimonButtonProps>`
     transition-duration: 0.4s;
     background-color: ${({ buttonColor }) => getButtonColorHex(buttonColor)};
 
-    margin-right: 4px;
-    margin-bottom: 4px;
+    margin: 2px;
 
     :hover {
         ${({ allowUserInput, buttonColor }) =>
             allowUserInput && `background-color: ${getButtonHoverColorHex(buttonColor)};`}
     }
+
+    ${({ allowUserInput }) => allowUserInput && `cursor: pointer;`}
 
     ${({ isLit, buttonColor }) => isLit && `background-color: ${getButtonHoverColorHex(buttonColor)};`}
 `;
