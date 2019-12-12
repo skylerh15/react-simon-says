@@ -1,10 +1,10 @@
 import { color } from 'styles/theme/color';
 
 export enum ButtonColor {
-    Red,
-    Blue,
-    Yellow,
-    Green
+    Red = 'Red',
+    Blue = 'Blue',
+    Yellow = 'Yellow',
+    Green = 'Green'
 }
 
 export function getButtonColorHex(buttonColor: ButtonColor) {
