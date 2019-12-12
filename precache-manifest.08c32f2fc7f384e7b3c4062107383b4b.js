@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bb23963d8bff8f8b37cb2a010475b45c",
+    "revision": "58e180628e5f556199d1615fcfc854d7",
     "url": "/react-simon-says/index.html"
   },
   {
-    "revision": "ba629c3a20a0519a3f5f",
+    "revision": "241fb513e04dea16ca94",
     "url": "/react-simon-says/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "83b58b81a2069cc0ac47",
-    "url": "/react-simon-says/static/js/2.f9fd0892.chunk.js"
+    "revision": "bc1b6b88844284ff57c8",
+    "url": "/react-simon-says/static/js/2.89121357.chunk.js"
   },
   {
-    "revision": "fd228f9b9a68ce6b23a6cf8b0a38a0e3",
-    "url": "/react-simon-says/static/js/2.f9fd0892.chunk.js.LICENSE"
+    "revision": "396656086d233a6f84f93b6161ecfda3",
+    "url": "/react-simon-says/static/js/2.89121357.chunk.js.LICENSE"
   },
   {
-    "revision": "ba629c3a20a0519a3f5f",
-    "url": "/react-simon-says/static/js/main.aad5762c.chunk.js"
+    "revision": "241fb513e04dea16ca94",
+    "url": "/react-simon-says/static/js/main.b27e263c.chunk.js"
   },
   {
     "revision": "88af731bfe069248952b",
