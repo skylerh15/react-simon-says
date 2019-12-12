@@ -1,6 +1,7 @@
 import React, { createContext, FC, useState, useContext } from 'react';
 
 import { Round } from 'types/round';
+import getRandomBoardColor from 'utils/getRandomBoardColor';
 
 interface State {
     currentRound: number | null;
@@ -20,6 +21,8 @@ const AppContextProvider: FC = ({ children }) => {
     const [currentRound, setCurrentRound] = useState(initialState.currentRound);
     const [gameInProgress, toggleGameInProgress] = useState(initialState.gameInProgress);
     const [roundData, setRoundData] = useState(initialState.roundData);
+
+    console.log(getRandomBoardColor());
 
     const contextState = {
         ...initialState,

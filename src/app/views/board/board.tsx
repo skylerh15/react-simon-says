@@ -2,9 +2,7 @@ import React, { FC } from 'react';
 
 import SimonBoard from 'app/components/SimonBoard';
 
-type PropTypes = {};
-
-const Board: FC<PropTypes> = props => {
+const Board: FC = () => {
     return <SimonBoard />;
 };
 
