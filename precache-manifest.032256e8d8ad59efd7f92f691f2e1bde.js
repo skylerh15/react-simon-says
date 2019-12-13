@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "33b0e465cb9411ee38fdc328013cd09b",
+    "revision": "bdc545a294fbe44f02d71e042e7093de",
     "url": "/react-simon-says/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-simon-says/static/js/2.ef1b21c2.chunk.js.LICENSE"
   },
   {
-    "revision": "697feae0cce27abe6032",
-    "url": "/react-simon-says/static/js/main.23070fcb.chunk.js"
+    "revision": "bd127f44b7870bcf84ed",
+    "url": "/react-simon-says/static/js/main.1290bcaa.chunk.js"
   },
   {
     "revision": "88af731bfe069248952b",
