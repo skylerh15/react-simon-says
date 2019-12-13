@@ -3,10 +3,9 @@ import { delay, range, isEqual, last, fill } from 'lodash';
 import { useCookies } from 'react-cookie';
 
 import { Round } from 'types/round';
-import { LOCALES } from 'types/i18n';
 import { getRandomBoardColor, zipArray, playButtonSound, playCrowdSound, addYearsToToday } from 'utils';
-import { ButtonColor } from 'enums';
-import { HIGH_SCORE_COOKIE, DEFAULT_LOCALE } from 'app-constants';
+import { ButtonColor, Locales } from 'enums';
+import { HIGH_SCORE_COOKIE, DEFAULT_LOCALE, LOCALE_COOKIE } from 'app-constants';
 
 interface State {
     allowUserInput: boolean;
@@ -19,7 +18,8 @@ interface State {
     roundData: Round[];
     startGame: () => void;
     userSelectedValues: ButtonColor[];
-    currentLocale: LOCALES;
+    currentLocale: Locales;
+    setCurrentLocale: Dispatch<Locales>;
 }
 
 const initialState: State = {
@@ -31,7 +31,8 @@ const initialState: State = {
     roundData: [],
     startGame: () => null,
     userSelectedValues: [],
-    currentLocale: DEFAULT_LOCALE
+    currentLocale: DEFAULT_LOCALE,
+    setCurrentLocale: () => null
 };
 
 export const AppContext = createContext(initialState);
@@ -43,6 +44,7 @@ const AppContextProvider: FC = ({ children }) => {
     const [allowUserInput, toggleUserInput] = useState(initialState.allowUserInput);
     const [userSelectedValues, setUserSelectedValues] = useState(initialState.userSelectedValues);
     const [canStartRound, toggleCanStartRound] = useState(initialState.canStartRound);
+    const [currentLocale, setCurrentLocale] = useState(cookies[LOCALE_COOKIE] || initialState.currentLocale);
 
     const currentRoundData = last(roundData);
     const currentRound = currentRoundData?.roundId || 0;
@@ -131,7 +133,9 @@ const AppContextProvider: FC = ({ children }) => {
         startGame,
         userSelectedValues,
         currentHighScore,
-        clearHighScore
+        clearHighScore,
+        currentLocale,
+        setCurrentLocale
     };
 
     return <AppContext.Provider value={contextState}>{children}</AppContext.Provider>;

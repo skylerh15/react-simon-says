@@ -4,3 +4,8 @@ export enum ButtonColor {
     Yellow = 'Yellow',
     Green = 'Green'
 }
+
+export enum Locales {
+    en = 'en',
+    es = 'es'
+}
