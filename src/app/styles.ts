@@ -19,9 +19,7 @@ export const MiddleWrapper = styled.div`
 `;
 
 export const InnerContent = styled.div`
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
+    margin: auto;
     display: flex;
     justify-content: center;
 `;
