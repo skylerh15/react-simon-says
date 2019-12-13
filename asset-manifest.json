@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-simon-says/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/react-simon-says/static/js/main.a5604c00.chunk.js",
-    "main.js.map": "/react-simon-says/static/js/main.a5604c00.chunk.js.map",
+    "main.js": "/react-simon-says/static/js/main.96958266.chunk.js",
+    "main.js.map": "/react-simon-says/static/js/main.96958266.chunk.js.map",
     "runtime-main.js": "/react-simon-says/static/js/runtime-main.77baba63.js",
     "runtime-main.js.map": "/react-simon-says/static/js/runtime-main.77baba63.js.map",
     "static/js/2.89121357.chunk.js": "/react-simon-says/static/js/2.89121357.chunk.js",
     "static/js/2.89121357.chunk.js.map": "/react-simon-says/static/js/2.89121357.chunk.js.map",
     "index.html": "/react-simon-says/index.html",
-    "precache-manifest.1a871ae590e55a37b1c02a6e763f8ca6.js": "/react-simon-says/precache-manifest.1a871ae590e55a37b1c02a6e763f8ca6.js",
+    "precache-manifest.44a51abf9acd8a34b624d54c34112d1a.js": "/react-simon-says/precache-manifest.44a51abf9acd8a34b624d54c34112d1a.js",
     "service-worker.js": "/react-simon-says/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/react-simon-says/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.89121357.chunk.js.LICENSE": "/react-simon-says/static/js/2.89121357.chunk.js.LICENSE",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.77baba63.js",
     "static/js/2.89121357.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.a5604c00.chunk.js"
+    "static/js/main.96958266.chunk.js"
   ]
 }
