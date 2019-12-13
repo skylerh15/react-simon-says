@@ -1,9 +1,11 @@
 import React, { createContext, FC, useState, useContext, Dispatch } from 'react';
 import { delay, range, isEqual, last, fill } from 'lodash';
+import { useCookies } from 'react-cookie';
 
 import { Round } from 'types/round';
-import { getRandomBoardColor, zipArray, playButtonSound, playCrowdSound } from 'utils';
+import { getRandomBoardColor, zipArray, playButtonSound, playCrowdSound, addYearsToToday } from 'utils';
 import { ButtonColor } from 'enums';
+import { HIGH_SCORE_COOKIE } from 'app-constants';
 
 interface State {
     currentRound: number | undefined;
@@ -30,6 +32,7 @@ const initialState: State = {
 export const AppContext = createContext(initialState);
 
 const AppContextProvider: FC = ({ children }) => {
+    const [cookies, setCookie] = useCookies([HIGH_SCORE_COOKIE]);
     const [roundData, setRoundData] = useState(initialState.roundData);
     const [currentLitColor, setCurrentLitColor] = useState(initialState.currentLitColor);
     const [allowUserInput, toggleUserInput] = useState(initialState.allowUserInput);
@@ -37,14 +40,20 @@ const AppContextProvider: FC = ({ children }) => {
     const [canStartRound, toggleCanStartRound] = useState(initialState.canStartRound);
 
     const currentRoundData = last(roundData);
-    const currentRound = currentRoundData?.roundId;
+    const currentRound = currentRoundData?.roundId || 0;
+    const currentHighScore = Number(cookies[HIGH_SCORE_COOKIE] || 0);
 
     const createNewRoundData = () => {
-        const roundId = (currentRound || 0) + 1;
-        const randomColor = [getRandomBoardColor()];
-        const color = currentRoundData ? currentRoundData.color.concat(randomColor) : randomColor;
+        const roundId = currentRound + 1;
+        const color = (currentRoundData?.color || []).concat([getRandomBoardColor()]);
         setRoundData(roundData.concat({ roundId, color }));
         showRoundColors(color);
+    };
+
+    const setHighScore = () => {
+        if (currentRound > currentHighScore) {
+            setCookie(HIGH_SCORE_COOKIE, currentRound, { expires: addYearsToToday(10) });
+        }
     };
 
     const startGame = () => {
@@ -71,15 +80,17 @@ const AppContextProvider: FC = ({ children }) => {
     };
 
     const attemptGuess: Dispatch<ButtonColor[]> = colors => {
-        const incorrect = !isCorrectGuess(colors);
-        const allAnswers = colors.length === currentRoundData?.color.length;
-        if (incorrect) {
+        const correct = isCorrectGuess(colors);
+        const allAnswersCorrect = correct && colors.length === currentRoundData?.color.length;
+        if (!correct) {
             setRoundData([]);
             playCrowdSound('aww');
-        } else if (allAnswers) {
+        }
+        if (allAnswersCorrect) {
+            setHighScore();
             playCrowdSound('applause');
         }
-        if (colors.length === currentRoundData?.color.length || incorrect) {
+        if (allAnswersCorrect || !correct) {
             toggleUserInput(false);
             setUserSelectedValues([]);
             toggleCanStartRound(true);
@@ -90,16 +101,15 @@ const AppContextProvider: FC = ({ children }) => {
         isEqual(guesses, currentRoundData?.color.slice(0, guesses.length));
 
     const onButtonClick: Dispatch<ButtonColor> = color => {
-        if (!currentRound || !allowUserInput) {
-            return;
-        }
-        playButtonSound(color);
-        if (userSelectedValues.length < currentRound) {
-            const newValues = userSelectedValues.concat(color);
-            setCurrentLitColor(color);
-            delay(setCurrentLitColor, 500, null);
-            setUserSelectedValues(newValues);
-            attemptGuess(newValues);
+        if (currentRound && allowUserInput) {
+            playButtonSound(color);
+            if (userSelectedValues.length < currentRound) {
+                const newValues = userSelectedValues.concat(color);
+                setCurrentLitColor(color);
+                delay(setCurrentLitColor, 500, null);
+                setUserSelectedValues(newValues);
+                attemptGuess(newValues);
+            }
         }
     };
 
