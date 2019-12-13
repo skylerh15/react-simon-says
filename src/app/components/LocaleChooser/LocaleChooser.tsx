@@ -22,16 +22,14 @@ const LocaleChooser: FC = () => {
 
     return (
         <LocaleChooserRow>
-            <label>
-                {formatMessage({ id: 'localeChooser.label' })}
-                <LocaleSelect
-                    disabled={chooserDisabled}
-                    value={currentLocale}
-                    onChange={e => handleUpdateLocale(Locales[e.target.value])}
-                >
-                    {options}
-                </LocaleSelect>
-            </label>
+            {formatMessage({ id: 'localeChooser.label' })}
+            <LocaleSelect
+                disabled={chooserDisabled}
+                value={currentLocale}
+                onChange={e => handleUpdateLocale(Locales[e.target.value])}
+            >
+                {options}
+            </LocaleSelect>
         </LocaleChooserRow>
     );
 };
