@@ -5,13 +5,14 @@ const messages: Messages = {
     'clearHighScore.button.title': 'Puntuación alta clara',
     'clearHighScore.header': 'Puntuación Alta: {currentHighScore}',
     'clearHighScore.header.empty': 'No Puntuación Alta',
+    'default.document.title': 'React Simón Dice',
+    'localeChooser.label': 'Localización:',
+    'localeChooser.value.en': 'Inglés',
+    'localeChooser.value.es': 'Español',
     'startButton.text.inProgress': 'En progreso',
     'startButton.text.startGame': 'Comenzar el juego',
     'startButton.text.startGuess': 'Empieza a adivinar',
-    'startButton.text.startRound': 'Comienza la Ronda {nextRound}',
-    'localeChooser.label': 'Localización:',
-    'localeChooser.value.en': 'Inglés',
-    'localeChooser.value.es': 'Español'
+    'startButton.text.startRound': 'Comienza la Ronda {nextRound}'
 };
 
 export default messages;
