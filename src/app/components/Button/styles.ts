@@ -12,6 +12,7 @@ interface SimonButtonProps {
 export const SimonButton = styled.div<SimonButtonProps>`
     height: 25vh;
     width: 25vh;
+    border-radius: 25px;
     max-width: 49vw;
     transition-duration: 0.4s;
     margin: 2px;
