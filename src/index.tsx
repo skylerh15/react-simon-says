@@ -4,10 +4,10 @@ import './index.css';
 import Index from './app';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider } from 'styled-components';
-import { styledComponentsTheme } from 'styles/theme';
+import { color } from 'styles/theme';
 
 ReactDOM.render(
-    <ThemeProvider theme={styledComponentsTheme}>
+    <ThemeProvider theme={{ color }}>
         <Index />
     </ThemeProvider>,
     document.getElementById('root')

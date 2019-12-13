@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { ButtonColor, getButtonColorHex, getButtonHoverColorHex } from 'enums';
+import { ButtonColor } from 'enums';
+import { getButtonColorHex, getButtonHoverColorHex } from 'utils';
 
 interface SimonButtonProps {
     buttonColor: ButtonColor;
