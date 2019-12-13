@@ -7,7 +7,6 @@ import AppMessages from 'lib/i18n';
 
 const IntlContext: FC = ({ children }) => {
     const { currentLocale } = useApp();
-    console.log(currentLocale);
     return (
         <IntlProvider locale={currentLocale} messages={AppMessages[currentLocale]}>
             {children}
