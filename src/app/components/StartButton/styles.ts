@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledStartButton = styled.button`
-    width: 100%;
+    height: 35px;
+    justify-self: center;
+    width: 60%;
 `;

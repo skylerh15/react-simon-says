@@ -3,11 +3,13 @@ import React, { FC } from 'react';
 import SimonBoard from 'app/components/SimonBoard';
 import StartButton from 'app/components/StartButton';
 
+import { BoardContainer } from './styles';
+
 const Board: FC = () => (
-    <div>
+    <BoardContainer>
         <StartButton />
         <SimonBoard />
-    </div>
+    </BoardContainer>
 );
 
 export default Board;
