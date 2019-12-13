@@ -1,23 +1,29 @@
 {
   "files": {
     "main.css": "/react-simon-says/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/react-simon-says/static/js/main.96958266.chunk.js",
-    "main.js.map": "/react-simon-says/static/js/main.96958266.chunk.js.map",
+    "main.js": "/react-simon-says/static/js/main.fe4453aa.chunk.js",
+    "main.js.map": "/react-simon-says/static/js/main.fe4453aa.chunk.js.map",
     "runtime-main.js": "/react-simon-says/static/js/runtime-main.77baba63.js",
     "runtime-main.js.map": "/react-simon-says/static/js/runtime-main.77baba63.js.map",
-    "static/js/2.89121357.chunk.js": "/react-simon-says/static/js/2.89121357.chunk.js",
-    "static/js/2.89121357.chunk.js.map": "/react-simon-says/static/js/2.89121357.chunk.js.map",
+    "static/js/2.dba2ee61.chunk.js": "/react-simon-says/static/js/2.dba2ee61.chunk.js",
+    "static/js/2.dba2ee61.chunk.js.map": "/react-simon-says/static/js/2.dba2ee61.chunk.js.map",
     "index.html": "/react-simon-says/index.html",
-    "precache-manifest.44a51abf9acd8a34b624d54c34112d1a.js": "/react-simon-says/precache-manifest.44a51abf9acd8a34b624d54c34112d1a.js",
+    "precache-manifest.e5ddb210db799ccb3ce3ff3e0889fa53.js": "/react-simon-says/precache-manifest.e5ddb210db799ccb3ce3ff3e0889fa53.js",
     "service-worker.js": "/react-simon-says/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/react-simon-says/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.89121357.chunk.js.LICENSE": "/react-simon-says/static/js/2.89121357.chunk.js.LICENSE",
+    "static/js/2.dba2ee61.chunk.js.LICENSE": "/react-simon-says/static/js/2.dba2ee61.chunk.js.LICENSE",
+    "static/media/a_sharp.wav": "/react-simon-says/static/media/a_sharp.8c41f6e6.wav",
+    "static/media/applause.wav": "/react-simon-says/static/media/applause.9cb7c788.wav",
+    "static/media/aww.wav": "/react-simon-says/static/media/aww.827dbe6b.wav",
+    "static/media/c_sharp.wav": "/react-simon-says/static/media/c_sharp.8b562331.wav",
+    "static/media/f_sharp.wav": "/react-simon-says/static/media/f_sharp.720b7b95.wav",
+    "static/media/g_sharp.wav": "/react-simon-says/static/media/g_sharp.14433c26.wav",
     "static/media/wood.jpg": "/react-simon-says/static/media/wood.97685270.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.77baba63.js",
-    "static/js/2.89121357.chunk.js",
+    "static/js/2.dba2ee61.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.96958266.chunk.js"
+    "static/js/main.fe4453aa.chunk.js"
   ]
 }
