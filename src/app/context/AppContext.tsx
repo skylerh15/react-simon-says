@@ -52,6 +52,7 @@ const AppContextProvider: FC = ({ children }) => {
 
     const setHighScore = () => {
         if (currentRound > currentHighScore) {
+            playCrowdSound('applause');
             setCookie(HIGH_SCORE_COOKIE, currentRound, { expires: addYearsToToday(10) });
         }
     };
@@ -88,7 +89,6 @@ const AppContextProvider: FC = ({ children }) => {
         }
         if (allAnswersCorrect) {
             setHighScore();
-            playCrowdSound('applause');
         }
         if (allAnswersCorrect || !correct) {
             toggleUserInput(false);
