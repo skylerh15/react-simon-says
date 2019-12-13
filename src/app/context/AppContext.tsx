@@ -96,6 +96,8 @@ const AppContextProvider: FC = ({ children }) => {
         playButtonSound(color);
         if (userSelectedValues.length < currentRound) {
             const newValues = userSelectedValues.concat(color);
+            setCurrentLitColor(color);
+            delay(setCurrentLitColor, 500, null);
             setUserSelectedValues(newValues);
             attemptGuess(newValues);
         }

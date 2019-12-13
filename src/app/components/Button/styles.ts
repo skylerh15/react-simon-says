@@ -15,6 +15,7 @@ export const SimonButton = styled.div<SimonButtonProps>`
     border-radius: 25px;
     max-width: 49vw;
     transition-duration: 0.4s;
+    -webkit-tap-highlight-color: transparent;
     margin: 2px;
     background-color: ${({ buttonColor }) => getButtonColorHex(buttonColor)};
 
