@@ -2,7 +2,7 @@ import React, { createContext, FC, useState, useContext, Dispatch } from 'react'
 import { delay, range, isEqual, last, fill } from 'lodash';
 
 import { Round } from 'types/round';
-import { getRandomBoardColor, zipArray, playButtonSound } from 'utils';
+import { getRandomBoardColor, zipArray, playButtonSound, playCrowdSound } from 'utils';
 import { ButtonColor } from 'enums';
 
 interface State {
@@ -72,8 +72,12 @@ const AppContextProvider: FC = ({ children }) => {
 
     const attemptGuess: Dispatch<ButtonColor[]> = colors => {
         const incorrect = !isCorrectGuess(colors);
+        const allAnswers = colors.length === currentRoundData?.color.length;
         if (incorrect) {
             setRoundData([]);
+            playCrowdSound('aww');
+        } else if (allAnswers) {
+            playCrowdSound('applause');
         }
         if (colors.length === currentRoundData?.color.length || incorrect) {
             toggleUserInput(false);
