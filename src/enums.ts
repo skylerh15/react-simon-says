@@ -15,10 +15,8 @@ export function getButtonColorHex(buttonColor: ButtonColor) {
             return color.$Blue;
         case ButtonColor.Yellow:
             return color.$Yellow;
-        case ButtonColor.Green:
-            return color.$Green;
         default:
-            return color.$Yellow;
+            return color.$Green;
     }
 }
 
@@ -30,9 +28,7 @@ export function getButtonHoverColorHex(buttonColor: ButtonColor) {
             return color.$Blue_Lit;
         case ButtonColor.Yellow:
             return color.$Yellow_Lit;
-        case ButtonColor.Green:
-            return color.$Green_Lit;
         default:
-            return color.$Yellow_Lit;
+            return color.$Green_Lit;
     }
 }

@@ -13,11 +13,7 @@ type Props = {
 const Button: FC<Props> = ({ buttonColor }) => {
     const { currentLitColor, allowUserInput, onButtonClick } = useApp();
 
-    const onClick = () => {
-        if (allowUserInput) {
-            onButtonClick(buttonColor);
-        }
-    };
+    const onClick = () => onButtonClick(buttonColor);
 
     return (
         <SimonButton

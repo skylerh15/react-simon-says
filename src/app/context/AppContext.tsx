@@ -2,7 +2,7 @@ import React, { createContext, FC, useState, useContext, Dispatch } from 'react'
 import { delay, range, isEqual, last, fill } from 'lodash';
 
 import { Round } from 'types/round';
-import { getRandomBoardColor, zipArray } from 'utils';
+import { getRandomBoardColor, zipArray, playButtonSound } from 'utils';
 import { ButtonColor } from 'enums';
 
 interface State {
@@ -60,18 +60,22 @@ const AppContextProvider: FC = ({ children }) => {
             if (index === colorRotation.length - 1) {
                 toggleUserInput(true);
             }
-            setCurrentLitColor(colorRotation[index]);
+            const currentColor = colorRotation[index];
+            if (currentColor) {
+                playButtonSound(currentColor);
+            }
+            setCurrentLitColor(currentColor);
         };
 
         colorRotation.forEach((color, ix) => delay(setColor, 1000 * (ix + 1), ix));
     };
 
-    const attemptGuess: Dispatch<ButtonColor[]> = selectedValues => {
-        const incorrect = !isCorrectGuess(selectedValues);
+    const attemptGuess: Dispatch<ButtonColor[]> = colors => {
+        const incorrect = !isCorrectGuess(colors);
         if (incorrect) {
             setRoundData([]);
         }
-        if (selectedValues.length === currentRoundData?.color.length || incorrect) {
+        if (colors.length === currentRoundData?.color.length || incorrect) {
             toggleUserInput(false);
             setUserSelectedValues([]);
             toggleCanStartRound(true);
@@ -82,9 +86,10 @@ const AppContextProvider: FC = ({ children }) => {
         isEqual(guesses, currentRoundData?.color.slice(0, guesses.length));
 
     const onButtonClick: Dispatch<ButtonColor> = color => {
-        if (!currentRound) {
+        if (!currentRound || !allowUserInput) {
             return;
         }
+        playButtonSound(color);
         if (userSelectedValues.length < currentRound) {
             const newValues = userSelectedValues.concat(color);
             setUserSelectedValues(newValues);
