@@ -5,4 +5,6 @@ export const ButtonOrder = [
     [ButtonColor.Red, ButtonColor.Blue]
 ];
 
+export const LOCALE = 'en';
+
 export const HIGH_SCORE_COOKIE = 'high_score';
