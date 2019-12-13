@@ -25,7 +25,7 @@ function getButtonSound(buttonColor: ButtonColor) {
 function playSound(file: string) {
     const audio = new Audio(file);
     audio.volume = 0.5;
-    audio.play();
+    audio.play().then(() => audio.remove());
 }
 
 export function playButtonSound(buttonColor: ButtonColor) {
