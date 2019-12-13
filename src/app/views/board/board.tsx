@@ -1,10 +1,10 @@
 import React from 'react';
 
-import SimonBoard from 'app/components/SimonBoard';
-import StartButton from 'app/components/StartButton';
 import CurrentHighScore from 'app/components/CurrentHighScore';
 import LocaleChooser from 'app/components/LocaleChooser';
+import SimonBoard from 'app/components/SimonBoard';
 import SiteTitle from 'app/components/SiteTitle';
+import StartButton from 'app/components/StartButton';
 
 import { BoardContainer } from './styles';
 
