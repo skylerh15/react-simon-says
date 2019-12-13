@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useIntl } from 'react-intl';
 
 import { useApp } from 'app/context/AppContext';
 
@@ -6,15 +7,18 @@ import { StyledStartButton } from './styles';
 
 const StartButton: FC = () => {
     const { startGame, currentRound, canStartRound, allowUserInput } = useApp();
+    const { formatMessage } = useIntl();
 
     const getButtonText = () => {
+        let buttonId = 'inProgress';
+        const nextRound = (currentRound || 0) + 1;
         if (allowUserInput) {
-            return 'Start Guessing!';
+            buttonId = 'startGuess';
+        } else if (canStartRound) {
+            buttonId = currentRound ? 'startRound' : 'startGame';
         }
-        if (canStartRound) {
-            return `Start ${currentRound ? `Round ${currentRound + 1}` : 'Game'}`;
-        }
-        return 'In Progress';
+        const id = `startButton.text.${buttonId}`;
+        return formatMessage({ id }, { nextRound });
     };
 
     return (

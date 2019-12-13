@@ -8,31 +8,33 @@ import { ButtonColor } from 'enums';
 import { HIGH_SCORE_COOKIE } from 'app-constants';
 
 interface State {
-    currentRound?: number;
-    canStartRound: boolean;
-    roundData: Round[];
-    currentLitColor?: ButtonColor;
     allowUserInput: boolean;
+    canStartRound: boolean;
+    clearHighScore: () => void;
+    currentHighScore: number;
+    currentLitColor?: ButtonColor;
+    currentRound?: number;
+    onButtonClick: Dispatch<ButtonColor>;
+    roundData: Round[];
     startGame: () => void;
     userSelectedValues: ButtonColor[];
-    onButtonClick: Dispatch<ButtonColor>;
-    currentHighScore: number;
 }
 
 const initialState: State = {
     allowUserInput: false,
     canStartRound: true,
+    clearHighScore: () => null,
+    currentHighScore: 0,
     onButtonClick: () => null,
     roundData: [],
     startGame: () => null,
-    userSelectedValues: [],
-    currentHighScore: 0
+    userSelectedValues: []
 };
 
 export const AppContext = createContext(initialState);
 
 const AppContextProvider: FC = ({ children }) => {
-    const [cookies, setCookie] = useCookies([HIGH_SCORE_COOKIE]);
+    const [cookies, setCookie, removeCookie] = useCookies([HIGH_SCORE_COOKIE]);
     const [roundData, setRoundData] = useState(initialState.roundData);
     const [currentLitColor, setCurrentLitColor] = useState(initialState.currentLitColor);
     const [allowUserInput, toggleUserInput] = useState(initialState.allowUserInput);
@@ -56,6 +58,8 @@ const AppContextProvider: FC = ({ children }) => {
             setCookie(HIGH_SCORE_COOKIE, currentRound, { expires: addYearsToToday(10) });
         }
     };
+
+    const clearHighScore = () => removeCookie(HIGH_SCORE_COOKIE);
 
     const startGame = () => {
         toggleUserInput(false);
@@ -123,7 +127,8 @@ const AppContextProvider: FC = ({ children }) => {
         roundData,
         startGame,
         userSelectedValues,
-        currentHighScore
+        currentHighScore,
+        clearHighScore
     };
 
     return <AppContext.Provider value={contextState}>{children}</AppContext.Provider>;
