@@ -5,4 +5,5 @@ export const StyledStartButton = styled.button`
     min-width: 150px;
     width: 250px;
     margin-bottom: 10px;
+    user-select: none;
 `;
