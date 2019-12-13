@@ -7,25 +7,31 @@ import { Locales } from 'enums';
 import { LocaleChooserRow, LocaleSelect } from './styles';
 
 const LocaleChooser: FC = () => {
-    const { currentLocale, setCurrentLocale } = useApp();
+    const { currentLocale, setCurrentLocale, allowUserInput, canStartRound } = useApp();
     const { formatMessage } = useIntl();
 
-    const locales = Object.keys(Locales).map(k => Locales[k]);
-
-    const options = locales.map(l => {
-        return (
-            <option key={l} value={l}>
-                {formatMessage({ id: `localeChooser.value.${l}` })}
+    const options = Object.keys(Locales)
+        .map(k => Locales[k])
+        .map(locale => (
+            <option key={locale} value={locale}>
+                {formatMessage({ id: `localeChooser.value.${locale}` })}
             </option>
-        );
-    });
+        ));
+
+    const chooserDisabled = !canStartRound && !allowUserInput;
 
     return (
         <LocaleChooserRow>
-            {formatMessage({ id: 'localeChooser.label' })}
-            <LocaleSelect value={currentLocale} onChange={e => setCurrentLocale(Locales[e.target.value])}>
-                {options}
-            </LocaleSelect>
+            <label>
+                {formatMessage({ id: 'localeChooser.label' })}
+                <LocaleSelect
+                    disabled={chooserDisabled}
+                    value={currentLocale}
+                    onChange={e => setCurrentLocale(Locales[e.target.value])}
+                >
+                    {options}
+                </LocaleSelect>
+            </label>
         </LocaleChooserRow>
     );
 };
