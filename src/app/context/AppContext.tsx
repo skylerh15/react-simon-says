@@ -8,10 +8,10 @@ import { ButtonColor } from 'enums';
 import { HIGH_SCORE_COOKIE } from 'app-constants';
 
 interface State {
-    currentRound: number | undefined;
+    currentRound?: number;
     canStartRound: boolean;
     roundData: Round[];
-    currentLitColor: ButtonColor | null;
+    currentLitColor?: ButtonColor;
     allowUserInput: boolean;
     startGame: () => void;
     userSelectedValues: ButtonColor[];
@@ -20,8 +20,6 @@ interface State {
 
 const initialState: State = {
     allowUserInput: false,
-    currentLitColor: null,
-    currentRound: undefined,
     canStartRound: true,
     onButtonClick: () => null,
     roundData: [],

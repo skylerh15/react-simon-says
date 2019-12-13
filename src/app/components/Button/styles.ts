@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-import { ButtonColor } from 'enums';
-import { getButtonColorHex, getButtonHoverColorHex } from 'utils';
+import { ButtonColorInfo } from 'utils';
 
-interface SimonButtonProps {
-    buttonColor: ButtonColor;
+interface SimonButtonProps extends ButtonColorInfo {
     isLit: boolean;
     allowUserInput: boolean;
 }
@@ -17,13 +15,12 @@ export const SimonButton = styled.div<SimonButtonProps>`
     transition-duration: 0.4s;
     -webkit-tap-highlight-color: transparent;
     margin: 2px;
-    background-color: ${({ buttonColor }) => getButtonColorHex(buttonColor)};
+    background-color: ${({ unlit }) => unlit};
 
     :hover {
-        ${({ allowUserInput, buttonColor }) =>
-            allowUserInput && `background-color: ${getButtonHoverColorHex(buttonColor)};`}
+        ${({ allowUserInput, lit }) => allowUserInput && `background-color: ${lit};`}
     }
 
     ${({ allowUserInput }) => allowUserInput && `cursor: pointer;`}
-    ${({ isLit, buttonColor }) => isLit && `background-color: ${getButtonHoverColorHex(buttonColor)};`}
+    ${({ isLit, lit }) => isLit && `background-color: ${lit};`}
 `;

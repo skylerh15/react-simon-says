@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { ButtonColor } from 'enums';
+import { getButtonColorInfo } from 'utils';
 
 import { useApp } from 'app/context/AppContext';
 
@@ -18,9 +19,9 @@ const Button: FC<Props> = ({ buttonColor }) => {
     return (
         <SimonButton
             allowUserInput={allowUserInput}
-            buttonColor={buttonColor}
             isLit={currentLitColor === buttonColor}
             onClick={onClick}
+            {...getButtonColorInfo(buttonColor)}
         />
     );
 };
