@@ -41,7 +41,7 @@ const AppContextProvider: FC = ({ children }) => {
     const getCurrentRoundData = () => roundData.find(r => r.roundId === currentRound);
 
     const createNewRoundData = () => {
-        const roundId = currentRound ? currentRound + 1 : 1;
+        const roundId = (currentRound || 0) + 1;
         const currentRoundData = getCurrentRoundData();
         const randomColor = [getRandomBoardColor()];
         const color = currentRoundData ? currentRoundData.color.concat(randomColor) : randomColor;
@@ -65,7 +65,7 @@ const AppContextProvider: FC = ({ children }) => {
             setCurrentLitColor(colorRotation[index]);
         };
 
-        colorRotation.forEach((color, ix) => delay(setColor, 1500 * (ix + 1), ix));
+        colorRotation.forEach((color, ix) => delay(setColor, 1000 * (ix + 1), ix));
     };
 
     const attemptGuess = (selectedValues: ButtonColor[]) => {
