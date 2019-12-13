@@ -1,24 +1,24 @@
 import { ButtonColor } from 'enums';
 
-const applause = require('sounds/applause.wav');
-const aww = require('sounds/aww.wav');
-const a_sharp = require('sounds/a_sharp.wav');
-const c_sharp = require('sounds/c_sharp.wav');
-const f_sharp = require('sounds/f_sharp.wav');
-const g_sharp = require('sounds/g_sharp.wav');
+const APPLAUSE = require('sounds/applause.wav');
+const AWW = require('sounds/aww.wav');
+const A_SHARP = require('sounds/a_sharp.wav');
+const C_SHARP = require('sounds/c_sharp.wav');
+const F_SHARP = require('sounds/f_sharp.wav');
+const G_SHARP = require('sounds/g_sharp.wav');
 
 function getButtonSound(buttonColor: ButtonColor) {
     switch (buttonColor) {
         case ButtonColor.Red:
-            return a_sharp;
+            return A_SHARP;
         case ButtonColor.Blue:
-            return c_sharp;
+            return C_SHARP;
         case ButtonColor.Yellow:
-            return g_sharp;
+            return G_SHARP;
         case ButtonColor.Green:
-            return f_sharp;
+            return F_SHARP;
         default:
-            return f_sharp;
+            return F_SHARP;
     }
 }
 
@@ -35,6 +35,6 @@ export function playButtonSound(buttonColor: ButtonColor) {
 
 type CrowdSounds = 'applause' | 'aww';
 export function playCrowdSound(sound: CrowdSounds) {
-    const soundToPlay = sound === 'applause' ? applause : aww;
+    const soundToPlay = sound === 'applause' ? APPLAUSE : AWW;
     playSound(soundToPlay);
 }
