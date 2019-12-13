@@ -33,7 +33,8 @@ export function playButtonSound(buttonColor: ButtonColor) {
     playSound(sound);
 }
 
-export function playCrowdSound(sound: 'applause' | 'aww') {
+type CrowdSounds = 'applause' | 'aww';
+export function playCrowdSound(sound: CrowdSounds) {
     const soundToPlay = sound === 'applause' ? applause : aww;
     playSound(soundToPlay);
 }
