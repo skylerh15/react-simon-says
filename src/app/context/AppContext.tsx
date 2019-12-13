@@ -16,6 +16,7 @@ interface State {
     startGame: () => void;
     userSelectedValues: ButtonColor[];
     onButtonClick: Dispatch<ButtonColor>;
+    currentHighScore: number;
 }
 
 const initialState: State = {
@@ -24,7 +25,8 @@ const initialState: State = {
     onButtonClick: () => null,
     roundData: [],
     startGame: () => null,
-    userSelectedValues: []
+    userSelectedValues: [],
+    currentHighScore: 0
 };
 
 export const AppContext = createContext(initialState);
@@ -120,7 +122,8 @@ const AppContextProvider: FC = ({ children }) => {
         onButtonClick,
         roundData,
         startGame,
-        userSelectedValues
+        userSelectedValues,
+        currentHighScore
     };
 
     return <AppContext.Provider value={contextState}>{children}</AppContext.Provider>;
