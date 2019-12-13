@@ -10,10 +10,19 @@ const CurrentHighScore: FC = () => {
     const { formatMessage } = useIntl();
     return (
         <HighScoreHeader>
-            {formatMessage({ id: 'clearHighScore.header' }, { currentHighScore })}
-            <ClearHighScoreButton onClick={clearHighScore} title={formatMessage({ id: 'clearHighScore.button.title' })}>
-                {formatMessage({ id: 'clearHighScore.button.text' })}
-            </ClearHighScoreButton>
+            {currentHighScore ? (
+                <>
+                    {formatMessage({ id: 'clearHighScore.header' }, { currentHighScore })}
+                    <ClearHighScoreButton
+                        onClick={clearHighScore}
+                        title={formatMessage({ id: 'clearHighScore.button.title' })}
+                    >
+                        {formatMessage({ id: 'clearHighScore.button.text' })}
+                    </ClearHighScoreButton>
+                </>
+            ) : (
+                formatMessage({ id: 'clearHighScore.header.empty' })
+            )}
         </HighScoreHeader>
     );
 };

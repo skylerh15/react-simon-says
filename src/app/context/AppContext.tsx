@@ -3,9 +3,10 @@ import { delay, range, isEqual, last, fill } from 'lodash';
 import { useCookies } from 'react-cookie';
 
 import { Round } from 'types/round';
+import { LOCALES } from 'types/i18n';
 import { getRandomBoardColor, zipArray, playButtonSound, playCrowdSound, addYearsToToday } from 'utils';
 import { ButtonColor } from 'enums';
-import { HIGH_SCORE_COOKIE } from 'app-constants';
+import { HIGH_SCORE_COOKIE, DEFAULT_LOCALE } from 'app-constants';
 
 interface State {
     allowUserInput: boolean;
@@ -18,6 +19,7 @@ interface State {
     roundData: Round[];
     startGame: () => void;
     userSelectedValues: ButtonColor[];
+    currentLocale: LOCALES;
 }
 
 const initialState: State = {
@@ -28,7 +30,8 @@ const initialState: State = {
     onButtonClick: () => null,
     roundData: [],
     startGame: () => null,
-    userSelectedValues: []
+    userSelectedValues: [],
+    currentLocale: DEFAULT_LOCALE
 };
 
 export const AppContext = createContext(initialState);
