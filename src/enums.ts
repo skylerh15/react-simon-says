@@ -7,5 +7,6 @@ export enum ButtonColor {
 
 export enum Locales {
     en = 'en',
-    es = 'es'
+    es = 'es',
+    fr = 'fr'
 }

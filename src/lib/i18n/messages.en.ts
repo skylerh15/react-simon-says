@@ -9,6 +9,7 @@ const messages: Messages = {
     'localeChooser.label': 'Locale:',
     'localeChooser.value.en': 'English',
     'localeChooser.value.es': 'Spanish',
+    'localeChooser.value.fr': 'French',
     'startButton.text.inProgress': 'In Progress',
     'startButton.text.startGame': 'Start Game',
     'startButton.text.startGuess': 'Start Guessing',

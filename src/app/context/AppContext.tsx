@@ -1,5 +1,5 @@
 import React, { createContext, FC, useState, useContext, Dispatch } from 'react';
-import { delay, range, isEqual, last, fill } from 'lodash';
+import { delay, range, isEqual, last, fill, noop } from 'lodash';
 import { useCookies } from 'react-cookie';
 
 import { Round } from 'types/round';
@@ -13,26 +13,26 @@ interface State {
     clearHighScore: () => void;
     currentHighScore: number;
     currentLitColor?: ButtonColor;
+    currentLocale: Locales;
     currentRound?: number;
+    handleUpdateLocale: Dispatch<Locales>;
     onButtonClick: Dispatch<ButtonColor>;
     roundData: Round[];
     startGame: () => void;
     userSelectedValues: ButtonColor[];
-    currentLocale: Locales;
-    setCurrentLocale: Dispatch<Locales>;
 }
 
 const initialState: State = {
     allowUserInput: false,
     canStartRound: true,
-    clearHighScore: () => null,
+    clearHighScore: noop,
     currentHighScore: 0,
-    onButtonClick: () => null,
-    roundData: [],
-    startGame: () => null,
-    userSelectedValues: [],
     currentLocale: DEFAULT_LOCALE,
-    setCurrentLocale: () => null
+    handleUpdateLocale: noop,
+    onButtonClick: noop,
+    roundData: [],
+    startGame: noop,
+    userSelectedValues: []
 };
 
 export const AppContext = createContext(initialState);
@@ -122,6 +122,11 @@ const AppContextProvider: FC = ({ children }) => {
         }
     };
 
+    const handleUpdateLocale: Dispatch<Locales> = locale => {
+        setCurrentLocale(locale);
+        setCookie(LOCALE_COOKIE, locale, { expires: addYearsToToday(10) });
+    };
+
     const contextState = {
         ...initialState,
         allowUserInput,
@@ -135,7 +140,7 @@ const AppContextProvider: FC = ({ children }) => {
         currentHighScore,
         clearHighScore,
         currentLocale,
-        setCurrentLocale
+        handleUpdateLocale
     };
 
     return <AppContext.Provider value={contextState}>{children}</AppContext.Provider>;

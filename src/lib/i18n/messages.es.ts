@@ -9,6 +9,7 @@ const messages: Messages = {
     'localeChooser.label': 'Localización:',
     'localeChooser.value.en': 'Inglés',
     'localeChooser.value.es': 'Español',
+    'localeChooser.value.fr': 'Francés',
     'startButton.text.inProgress': 'En progreso',
     'startButton.text.startGame': 'Comenzar el juego',
     'startButton.text.startGuess': 'Empieza a adivinar',
