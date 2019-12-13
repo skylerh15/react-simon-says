@@ -1,26 +1,25 @@
-import React, { createContext, FC, useState, useContext } from 'react';
-import { delay, range, isEqual } from 'lodash';
+import React, { createContext, FC, useState, useContext, Dispatch } from 'react';
+import { delay, range, isEqual, last, fill } from 'lodash';
 
 import { Round } from 'types/round';
-import { getRandomBoardColor } from 'utils/getRandomBoardColor';
-import zipArray from 'utils/zip-array';
+import { getRandomBoardColor, zipArray } from 'utils';
 import { ButtonColor } from 'enums';
 
 interface State {
-    currentRound: number | null;
+    currentRound: number | undefined;
     canStartRound: boolean;
     roundData: Round[];
     currentLitColor: ButtonColor | null;
     allowUserInput: boolean;
     startGame: () => void;
     userSelectedValues: ButtonColor[];
-    onButtonClick: (color: ButtonColor) => void;
+    onButtonClick: Dispatch<ButtonColor>;
 }
 
 const initialState: State = {
     allowUserInput: false,
     currentLitColor: null,
-    currentRound: null,
+    currentRound: undefined,
     canStartRound: true,
     onButtonClick: () => null,
     roundData: [],
@@ -36,13 +35,12 @@ const AppContextProvider: FC = ({ children }) => {
     const [allowUserInput, toggleUserInput] = useState(initialState.allowUserInput);
     const [userSelectedValues, setUserSelectedValues] = useState(initialState.userSelectedValues);
     const [canStartRound, toggleCanStartRound] = useState(initialState.canStartRound);
-    const currentRound = roundData.length ? roundData[roundData.length - 1].roundId : null;
 
-    const getCurrentRoundData = () => roundData.find(r => r.roundId === currentRound);
+    const currentRoundData = last(roundData);
+    const currentRound = currentRoundData?.roundId;
 
     const createNewRoundData = () => {
         const roundId = (currentRound || 0) + 1;
-        const currentRoundData = getCurrentRoundData();
         const randomColor = [getRandomBoardColor()];
         const color = currentRoundData ? currentRoundData.color.concat(randomColor) : randomColor;
         setRoundData(roundData.concat({ roundId, color }));
@@ -55,8 +53,8 @@ const AppContextProvider: FC = ({ children }) => {
         createNewRoundData();
     };
 
-    const showRoundColors = (colors: ButtonColor[]) => {
-        const emptyArray = range(colors.length).map(() => null);
+    const showRoundColors: Dispatch<ButtonColor[]> = colors => {
+        const emptyArray = fill(range(colors.length), null);
         const colorRotation = zipArray(colors, emptyArray);
         const setColor = (index: number) => {
             if (index === colorRotation.length - 1) {
@@ -68,31 +66,22 @@ const AppContextProvider: FC = ({ children }) => {
         colorRotation.forEach((color, ix) => delay(setColor, 1000 * (ix + 1), ix));
     };
 
-    const attemptGuess = (selectedValues: ButtonColor[]) => {
-        const currentRoundData = getCurrentRoundData();
-        if (!currentRoundData) {
-            return;
-        }
+    const attemptGuess: Dispatch<ButtonColor[]> = selectedValues => {
         const incorrect = !isCorrectGuess(selectedValues);
         if (incorrect) {
             setRoundData([]);
         }
-        if (selectedValues.length === currentRoundData.color.length || incorrect) {
+        if (selectedValues.length === currentRoundData?.color.length || incorrect) {
             toggleUserInput(false);
             setUserSelectedValues([]);
             toggleCanStartRound(true);
         }
     };
 
-    const isCorrectGuess = (guesses: ButtonColor[]) => {
-        const currentRoundData = getCurrentRoundData();
-        if (!currentRoundData) {
-            return false;
-        }
-        return isEqual(guesses, currentRoundData.color.slice(0, guesses.length));
-    };
+    const isCorrectGuess = (guesses: ButtonColor[]) =>
+        isEqual(guesses, currentRoundData?.color.slice(0, guesses.length));
 
-    const onButtonClick = (color: ButtonColor) => {
+    const onButtonClick: Dispatch<ButtonColor> = color => {
         if (!currentRound) {
             return;
         }

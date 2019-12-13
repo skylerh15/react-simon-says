@@ -9,12 +9,12 @@ interface SimonButtonProps {
 }
 
 export const SimonButton = styled.div<SimonButtonProps>`
-    height: 100px;
-    width: 100px;
+    height: 25vh;
+    width: 25vh;
+    max-width: 49vw;
     transition-duration: 0.4s;
-    background-color: ${({ buttonColor }) => getButtonColorHex(buttonColor)};
-
     margin: 2px;
+    background-color: ${({ buttonColor }) => getButtonColorHex(buttonColor)};
 
     :hover {
         ${({ allowUserInput, buttonColor }) =>
@@ -22,6 +22,5 @@ export const SimonButton = styled.div<SimonButtonProps>`
     }
 
     ${({ allowUserInput }) => allowUserInput && `cursor: pointer;`}
-
     ${({ isLit, buttonColor }) => isLit && `background-color: ${getButtonHoverColorHex(buttonColor)};`}
 `;
