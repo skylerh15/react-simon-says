@@ -10,6 +10,8 @@ const messages: Messages = {
     'localeChooser.value.en': 'Anglais',
     'localeChooser.value.es': 'Espagnol',
     'localeChooser.value.fr': 'Français',
+    'soundToggle.label': 'Bruit',
+    'soundToggle.title': 'Basculer Bruit',
     'startButton.text.inProgress': 'En cours',
     'startButton.text.startGame': 'Démarrer le jeu',
     'startButton.text.startGuess': 'Commencez à deviner',

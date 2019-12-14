@@ -1,4 +1,5 @@
 import { ButtonColor } from 'enums';
+import { CrowdSounds } from 'types/crowd';
 
 const APPLAUSE = require('sounds/applause.wav');
 const AWW = require('sounds/aww.wav');
@@ -33,7 +34,6 @@ export function playButtonSound(buttonColor: ButtonColor) {
     playSound(sound);
 }
 
-type CrowdSounds = 'applause' | 'aww';
 export function playCrowdSound(sound: CrowdSounds) {
     const soundToPlay = sound === 'applause' ? APPLAUSE : AWW;
     playSound(soundToPlay);

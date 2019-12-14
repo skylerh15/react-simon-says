@@ -10,6 +10,8 @@ const messages: Messages = {
     'localeChooser.value.en': 'English',
     'localeChooser.value.es': 'Spanish',
     'localeChooser.value.fr': 'French',
+    'soundToggle.label': 'Sound',
+    'soundToggle.title': 'Toggle Sound',
     'startButton.text.inProgress': 'In Progress',
     'startButton.text.startGame': 'Start Game',
     'startButton.text.startGuess': 'Start Guessing',

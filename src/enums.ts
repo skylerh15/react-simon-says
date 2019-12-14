@@ -10,3 +10,9 @@ export enum Locales {
     es = 'es',
     fr = 'fr'
 }
+
+export enum Cookies {
+    SOUND = 'sound',
+    HIGH_SCORE = 'high_score',
+    LOCALE = 'locale'
+}

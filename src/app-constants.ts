@@ -6,6 +6,3 @@ export const ButtonOrder = [
 ];
 
 export const DEFAULT_LOCALE = Locales.en;
-
-export const HIGH_SCORE_COOKIE = 'high_score';
-export const LOCALE_COOKIE = 'locale';

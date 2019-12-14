@@ -11,14 +11,14 @@ const LocaleChooser: FC = () => {
     const { formatMessage } = useIntl();
 
     const options = Object.keys(Locales)
-        .map(k => Locales[k])
+        .map(e => Locales[e])
         .map(locale => (
             <option key={locale} value={locale}>
                 {formatMessage({ id: `localeChooser.value.${locale}` })}
             </option>
         ));
 
-    const chooserDisabled = !canStartRound && !allowUserInput;
+    const chooserDisabled = !(canStartRound || allowUserInput);
 
     return (
         <LocaleChooserRow>
