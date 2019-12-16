@@ -7,7 +7,7 @@ import { Locales } from 'enums';
 import { LocaleChooserRow, LocaleSelect } from './styles';
 
 const LocaleChooser: FC = () => {
-    const { currentLocale, handleUpdateLocale, allowUserInput, canStartRound } = useApp();
+    const { currentLocale, handleUpdateLocale, preventChangeSettings } = useApp();
     const { formatMessage } = useIntl();
 
     const options = Object.keys(Locales)
@@ -18,13 +18,11 @@ const LocaleChooser: FC = () => {
             </option>
         ));
 
-    const chooserDisabled = !(canStartRound || allowUserInput);
-
     return (
         <LocaleChooserRow>
             {formatMessage({ id: 'localeChooser.label' })}
             <LocaleSelect
-                disabled={chooserDisabled}
+                disabled={preventChangeSettings}
                 value={currentLocale}
                 onChange={e => handleUpdateLocale(Locales[e.target.value])}
             >

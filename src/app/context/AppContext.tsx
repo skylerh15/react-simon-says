@@ -24,6 +24,7 @@ interface State {
     startGame: () => void;
     toggleSound: Dispatch<boolean>;
     userSelectedValues: ButtonColor[];
+    preventChangeSettings: boolean;
 }
 
 const initialState: State = {
@@ -37,7 +38,8 @@ const initialState: State = {
     soundEnabled: true,
     startGame: noop,
     toggleSound: noop,
-    userSelectedValues: []
+    userSelectedValues: [],
+    preventChangeSettings: false
 };
 
 export const AppContext = createContext(initialState);
@@ -56,6 +58,7 @@ const AppContextProvider: FC = ({ children }) => {
 
     const currentRoundData = last(roundData);
     const currentRound = currentRoundData?.roundId || 0;
+    const preventChangeSettings = !(canStartRound || allowUserInput);
 
     const highScoreInfo =
         cookies[Cookies.HIGH_SCORE] && cookies[Cookies.HIGH_SCORE_DATE]
@@ -161,12 +164,13 @@ const AppContextProvider: FC = ({ children }) => {
         allowUserInput,
         canStartRound,
         clearHighScore,
-        highScoreInfo,
         currentLitColor,
         currentLocale,
         currentRound,
         handleUpdateLocale,
+        highScoreInfo,
         onButtonClick,
+        preventChangeSettings,
         roundData,
         soundEnabled,
         startGame,

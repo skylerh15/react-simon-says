@@ -12,13 +12,15 @@ import {
 } from './styles';
 
 const CurrentHighScore: FC = () => {
-    const { highScoreInfo, clearHighScore } = useApp();
+    const { highScoreInfo, clearHighScore, preventChangeSettings } = useApp();
     const { formatMessage } = useIntl();
+
     return highScoreInfo ? (
         <HighScoreContainer>
             <HighScoreHeader>
                 {formatMessage({ id: 'clearHighScore.header' }, { score: highScoreInfo.score })}
                 <ClearHighScoreButton
+                    disabled={preventChangeSettings}
                     onClick={clearHighScore}
                     title={formatMessage({ id: 'clearHighScore.button.title' })}
                 >

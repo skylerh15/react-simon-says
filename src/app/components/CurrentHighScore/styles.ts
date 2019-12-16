@@ -14,8 +14,6 @@ export const HighScoreHeader = styled.h3`
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    white-space: nowrap;
     margin: 0;
 `;
 
@@ -25,6 +23,7 @@ export const HighScoreSubHeader = styled.h5`
 
 export const HighScoreEmptyHeader = styled.h2`
     margin: 0 0 5px 0;
+    white-space: nowrap;
 `;
 
 export const ClearHighScoreButton = styled.button`
