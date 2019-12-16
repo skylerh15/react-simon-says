@@ -3,27 +3,32 @@ import { useIntl } from 'react-intl';
 
 import { useApp } from 'app/context/AppContext';
 
-import { HighScoreHeader, ClearHighScoreButton } from './styles';
+import {
+    HighScoreContainer,
+    ClearHighScoreButton,
+    HighScoreHeader,
+    HighScoreSubHeader,
+    HighScoreEmptyHeader
+} from './styles';
 
 const CurrentHighScore: FC = () => {
-    const { currentHighScore, clearHighScore } = useApp();
+    const { highScoreInfo, clearHighScore } = useApp();
     const { formatMessage } = useIntl();
-    return (
-        <HighScoreHeader>
-            {currentHighScore ? (
-                <>
-                    {formatMessage({ id: 'clearHighScore.header' }, { currentHighScore })}
-                    <ClearHighScoreButton
-                        onClick={clearHighScore}
-                        title={formatMessage({ id: 'clearHighScore.button.title' })}
-                    >
-                        {formatMessage({ id: 'clearHighScore.button.text' })}
-                    </ClearHighScoreButton>
-                </>
-            ) : (
-                formatMessage({ id: 'clearHighScore.header.empty' })
-            )}
-        </HighScoreHeader>
+    return highScoreInfo ? (
+        <HighScoreContainer>
+            <HighScoreHeader>
+                {formatMessage({ id: 'clearHighScore.header' }, { score: highScoreInfo.score })}
+                <ClearHighScoreButton
+                    onClick={clearHighScore}
+                    title={formatMessage({ id: 'clearHighScore.button.title' })}
+                >
+                    {formatMessage({ id: 'clearHighScore.button.text' })}
+                </ClearHighScoreButton>
+            </HighScoreHeader>
+            <HighScoreSubHeader>{highScoreInfo.date.toLocaleString()}</HighScoreSubHeader>
+        </HighScoreContainer>
+    ) : (
+        <HighScoreEmptyHeader>{formatMessage({ id: 'clearHighScore.header.empty' })}</HighScoreEmptyHeader>
     );
 };
 

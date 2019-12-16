@@ -14,5 +14,6 @@ export enum Locales {
 export enum Cookies {
     SOUND = 'sound',
     HIGH_SCORE = 'high_score',
-    LOCALE = 'locale'
+    LOCALE = 'locale',
+    HIGH_SCORE_DATE = 'high_score_date'
 }

@@ -4,15 +4,18 @@ import { useIntl } from 'react-intl';
 import { useApp } from 'app/context/AppContext';
 
 const SoundToggle: FC = () => {
-    const { soundEnabled, toggleSound } = useApp();
+    const { soundEnabled, toggleSound, canStartRound, allowUserInput } = useApp();
     const { formatMessage } = useIntl();
+
+    const toggleDisabled = !(canStartRound || allowUserInput);
 
     return (
         <div style={{ paddingTop: '4px' }}>
             <input
-                type="checkbox"
                 name="soundToggle"
+                type="checkbox"
                 checked={soundEnabled}
+                disabled={toggleDisabled}
                 onChange={e => toggleSound(e.target.checked)}
                 title={formatMessage({ id: 'soundToggle.title' })}
             />

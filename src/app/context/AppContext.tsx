@@ -1,18 +1,19 @@
-import React, { createContext, FC, useState, useContext, Dispatch } from 'react';
-import { delay, range, isEqual, last, fill, noop } from 'lodash';
+import React, { createContext, Dispatch, FC, useContext, useState } from 'react';
+import { delay, fill, isEqual, last, noop, range } from 'lodash';
 import { useCookies } from 'react-cookie';
 
 import { Round } from 'types/round';
 import { CrowdSounds } from 'types/crowd';
-import { getRandomBoardColor, zipArray, playButtonSound, playCrowdSound, addYearsToToday } from 'utils';
-import { ButtonColor, Locales, Cookies } from 'enums';
+import { HighScoreInfo } from 'types/score';
+import { addYearsToToday, getRandomBoardColor, playButtonSound, playCrowdSound, zipArray } from 'utils';
+import { ButtonColor, Cookies, Locales } from 'enums';
 import { DEFAULT_LOCALE } from 'app-constants';
 
 interface State {
     allowUserInput: boolean;
     canStartRound: boolean;
     clearHighScore: () => void;
-    currentHighScore: number;
+    highScoreInfo?: HighScoreInfo;
     currentLitColor?: ButtonColor;
     currentLocale: Locales;
     currentRound?: number;
@@ -29,7 +30,6 @@ const initialState: State = {
     allowUserInput: false,
     canStartRound: true,
     clearHighScore: noop,
-    currentHighScore: 0,
     currentLocale: DEFAULT_LOCALE,
     handleUpdateLocale: noop,
     onButtonClick: noop,
@@ -56,7 +56,14 @@ const AppContextProvider: FC = ({ children }) => {
 
     const currentRoundData = last(roundData);
     const currentRound = currentRoundData?.roundId || 0;
-    const currentHighScore = Number(cookies[Cookies.HIGH_SCORE] || 0);
+
+    const highScoreInfo =
+        cookies[Cookies.HIGH_SCORE] && cookies[Cookies.HIGH_SCORE_DATE]
+            ? {
+                  score: Number(cookies[Cookies.HIGH_SCORE]),
+                  date: new Date(cookies[Cookies.HIGH_SCORE_DATE])
+              }
+            : undefined;
 
     const createNewRoundData = () => {
         const roundId = currentRound + 1;
@@ -77,9 +84,10 @@ const AppContextProvider: FC = ({ children }) => {
     };
 
     const setHighScore = () => {
-        if (currentRound > currentHighScore) {
+        if (!highScoreInfo || currentRound > highScoreInfo.score) {
             onPlayCrowdSound('applause');
             handleSetCookie(Cookies.HIGH_SCORE, currentRound);
+            handleSetCookie(Cookies.HIGH_SCORE_DATE, new Date());
         }
     };
 
@@ -146,12 +154,12 @@ const AppContextProvider: FC = ({ children }) => {
         handleSetCookie(Cookies.LOCALE, locale);
     };
 
-    const contextState = {
+    const contextState: State = {
         ...initialState,
         allowUserInput,
         canStartRound,
         clearHighScore,
-        currentHighScore,
+        highScoreInfo,
         currentLitColor,
         currentLocale,
         currentRound,

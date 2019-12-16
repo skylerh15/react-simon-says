@@ -18,7 +18,7 @@ const StartButton: FC = () => {
             buttonId = currentRound ? 'startRound' : 'startGame';
         }
         const id = `startButton.text.${buttonId}`;
-        return formatMessage({ id }, { nextRound });
+        return formatMessage({ id }, { nextRound, currentRound });
     };
 
     return (
