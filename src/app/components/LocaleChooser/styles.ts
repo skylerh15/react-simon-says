@@ -10,4 +10,5 @@ export const LocaleChooserRow = styled.div`
 `;
 export const LocaleSelect = styled.select`
     margin-left: 8px;
+    flex-shrink: 0;
 `;
