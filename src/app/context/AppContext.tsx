@@ -5,7 +5,14 @@ import { useCookies } from 'react-cookie';
 import { Round } from 'types/round';
 import { CrowdSounds } from 'types/crowd';
 import { HighScoreInfo } from 'types/score';
-import { addYearsToToday, getRandomBoardColor, playButtonSound, playCrowdSound, zipArray } from 'utils';
+import {
+    addYearsToToday,
+    getRandomBoardColor,
+    playButtonSound,
+    playCrowdSound,
+    zipArray,
+    createKeyUpEffect
+} from 'utils';
 import { ButtonColor, Cookies, Locales, KeyCode } from 'enums';
 import { DEFAULT_LOCALE } from 'app-constants';
 
@@ -68,13 +75,6 @@ const AppContextProvider: FC = ({ children }) => {
               }
             : undefined;
 
-    useEffect(() => {
-        const _onKeyUp = ({ key }: KeyboardEvent) => key === KeyCode.SPACE && startGame();
-        window.addEventListener('keyup', _onKeyUp);
-
-        return () => window.removeEventListener('keyup', _onKeyUp);
-    });
-
     const createNewRoundData = () => {
         const roundId = currentRound + 1;
         const color = (currentRoundData?.color || []).concat([getRandomBoardColor()]);
@@ -112,6 +112,10 @@ const AppContextProvider: FC = ({ children }) => {
         toggleCanStartRound(false);
         createNewRoundData();
     };
+
+    // Starts game after user releases space bar
+    const keyUpEffect = createKeyUpEffect(KeyCode.SPACE, startGame);
+    useEffect(keyUpEffect);
 
     const showRoundColors: Dispatch<ButtonColor[]> = colors => {
         const emptyArray = fill(range(colors.length), null);
