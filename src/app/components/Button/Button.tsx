@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 
 import { ButtonColor } from 'enums';
-import { getButtonColorInfo, createKeyUpEffect } from 'utils';
+import { getButtonColorInfo, createKeyEffect } from 'utils';
 
 import { useApp } from 'app/context/AppContext';
 
@@ -16,7 +16,7 @@ const Button: FC<Props> = ({ buttonColor, index }) => {
     const { currentLitColor, allowUserInput, onButtonClick } = useApp();
     const onClick = () => onButtonClick(buttonColor);
 
-    const keyUpEffect = createKeyUpEffect(String(index), onClick);
+    const keyUpEffect = createKeyEffect('keyup', String(index), onClick);
     useEffect(keyUpEffect);
 
     return (

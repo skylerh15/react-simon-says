@@ -11,7 +11,7 @@ import {
     playButtonSound,
     playCrowdSound,
     zipArray,
-    createKeyUpEffect
+    createKeyEffect
 } from 'utils';
 import { ButtonColor, Cookies, Locales, KeyCode } from 'enums';
 import { DEFAULT_LOCALE } from 'app-constants';
@@ -114,7 +114,7 @@ const AppContextProvider: FC = ({ children }) => {
     };
 
     // Starts game after user releases space bar
-    const keyUpEffect = createKeyUpEffect(KeyCode.SPACE, startGame);
+    const keyUpEffect = createKeyEffect('keyup', KeyCode.SPACE, startGame);
     useEffect(keyUpEffect);
 
     const showRoundColors: Dispatch<ButtonColor[]> = colors => {
