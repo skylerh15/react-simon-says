@@ -17,3 +17,7 @@ export enum Cookies {
     LOCALE = 'locale',
     HIGH_SCORE_DATE = 'high_score_date'
 }
+
+export enum KeyCode {
+    SPACE = ' '
+}

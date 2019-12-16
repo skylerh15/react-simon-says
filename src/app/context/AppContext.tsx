@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, FC, useContext, useState } from 'react';
+import React, { createContext, Dispatch, FC, useContext, useState, useEffect } from 'react';
 import { delay, fill, isEqual, last, noop, range } from 'lodash';
 import { useCookies } from 'react-cookie';
 
@@ -6,7 +6,7 @@ import { Round } from 'types/round';
 import { CrowdSounds } from 'types/crowd';
 import { HighScoreInfo } from 'types/score';
 import { addYearsToToday, getRandomBoardColor, playButtonSound, playCrowdSound, zipArray } from 'utils';
-import { ButtonColor, Cookies, Locales } from 'enums';
+import { ButtonColor, Cookies, Locales, KeyCode } from 'enums';
 import { DEFAULT_LOCALE } from 'app-constants';
 
 interface State {
@@ -68,6 +68,13 @@ const AppContextProvider: FC = ({ children }) => {
               }
             : undefined;
 
+    useEffect(() => {
+        const _onKeyUp = ({ key }: KeyboardEvent) => key === KeyCode.SPACE && startGame();
+        window.addEventListener('keyup', _onKeyUp);
+
+        return () => window.removeEventListener('keyup', _onKeyUp);
+    });
+
     const createNewRoundData = () => {
         const roundId = currentRound + 1;
         const color = (currentRoundData?.color || []).concat([getRandomBoardColor()]);
@@ -97,6 +104,10 @@ const AppContextProvider: FC = ({ children }) => {
     const clearHighScore = () => removeCookie(Cookies.HIGH_SCORE);
 
     const startGame = () => {
+        if (!canStartRound) {
+            return;
+        }
+
         toggleUserInput(false);
         toggleCanStartRound(false);
         createNewRoundData();

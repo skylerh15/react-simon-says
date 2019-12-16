@@ -8,11 +8,12 @@ import SimonButton from 'app/components/Button';
 import { ButtonRow } from './styles';
 
 const SimonBoard: FC = () => {
-    const renderButton = (value: ButtonColor) => <SimonButton key={value} buttonColor={value} />;
+    let buttonIndex = 0;
+    const renderButton = (value: ButtonColor) => <SimonButton key={value} buttonColor={value} index={++buttonIndex} />;
 
     const renderRow = (row: ButtonColor[], index: number) => <ButtonRow key={index}>{row.map(renderButton)}</ButtonRow>;
 
-    return <div>{ButtonOrder.map(renderRow)}</div>;
+    return <>{ButtonOrder.map(renderRow)}</>;
 };
 
 export default SimonBoard;
