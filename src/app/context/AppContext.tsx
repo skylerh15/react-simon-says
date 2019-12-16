@@ -114,8 +114,7 @@ const AppContextProvider: FC = ({ children }) => {
     };
 
     // Starts game after user releases space bar
-    const keyUpEffect = createKeyEffect('keyup', KeyCode.SPACE, startGame);
-    useEffect(keyUpEffect);
+    useEffect(createKeyEffect('keyup', KeyCode.SPACE, startGame));
 
     const showRoundColors: Dispatch<ButtonColor[]> = colors => {
         const emptyArray = fill(range(colors.length), null);

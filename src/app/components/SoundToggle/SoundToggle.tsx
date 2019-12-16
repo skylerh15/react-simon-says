@@ -1,11 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import { useApp } from 'app/context/AppContext';
+import { createKeyEffect } from 'utils';
+import { KeyCode } from 'enums';
 
 const SoundToggle: FC = () => {
     const { soundEnabled, toggleSound, preventChangeSettings } = useApp();
     const { formatMessage } = useIntl();
+
+    const onToggleSound = () => !preventChangeSettings && toggleSound(!soundEnabled);
+
+    useEffect(createKeyEffect('keyup', KeyCode.M, onToggleSound));
 
     return (
         <div style={{ paddingTop: '4px' }}>
@@ -14,7 +20,7 @@ const SoundToggle: FC = () => {
                 type="checkbox"
                 checked={soundEnabled}
                 disabled={preventChangeSettings}
-                onChange={e => toggleSound(e.target.checked)}
+                onChange={onToggleSound}
                 title={formatMessage({ id: 'soundToggle.title' })}
             />
             {formatMessage({ id: 'soundToggle.label' })}

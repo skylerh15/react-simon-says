@@ -19,5 +19,10 @@ export enum Cookies {
 }
 
 export enum KeyCode {
-    SPACE = ' '
+    Digit1 = 'Digit1',
+    Digit2 = 'Digit2',
+    Digit3 = 'Digit3',
+    Digit4 = 'Digit4',
+    M = 'KeyM',
+    SPACE = 'Space'
 }

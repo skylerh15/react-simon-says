@@ -16,8 +16,7 @@ const Button: FC<Props> = ({ buttonColor, index }) => {
     const { currentLitColor, allowUserInput, onButtonClick } = useApp();
     const onClick = () => onButtonClick(buttonColor);
 
-    const keyUpEffect = createKeyEffect('keyup', String(index), onClick);
-    useEffect(keyUpEffect);
+    useEffect(createKeyEffect('keyup', `Digit${index}`, onClick));
 
     return (
         <SimonButton
