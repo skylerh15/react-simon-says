@@ -45,7 +45,7 @@ const initialState: State = {
 export const AppContext = createContext(initialState);
 
 const AppContextProvider: FC = ({ children }) => {
-    const [cookies, setCookie, removeCookie] = useCookies(Object.keys(Cookies).map(e => Cookies[e]));
+    const [cookies, setCookie, removeCookie] = useCookies();
     const [roundData, setRoundData] = useState(initialState.roundData);
     const [currentLitColor, setCurrentLitColor] = useState(initialState.currentLitColor);
     const [allowUserInput, toggleUserInput] = useState(initialState.allowUserInput);
