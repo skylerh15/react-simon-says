@@ -1,29 +1,24 @@
 import styled from 'styled-components';
 
-export const HighScoreContainer = styled.h2`
-    display: flex;
-    justify-content: center;
+export const HighScoreContainer = styled.div`
     align-items: center;
+    display: flex;
     flex-wrap: wrap;
+    font-size: 1.5em;
+    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 5px;
     white-space: nowrap;
-    margin: 0;
 `;
 
-export const HighScoreHeader = styled.h3`
+export const HighScoreHeader = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0;
 `;
 
-export const HighScoreSubHeader = styled.h5`
-    margin: 0 0 5px 0;
-`;
-
-export const HighScoreEmptyHeader = styled.h2`
-    margin: 0 0 5px 0;
-    white-space: nowrap;
+export const HighScoreSubHeader = styled.div`
+    font-size: 0.83em;
 `;
 
 export const ClearHighScoreButton = styled.button`
