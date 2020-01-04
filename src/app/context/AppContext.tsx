@@ -11,7 +11,7 @@ import {
     playButtonSound,
     playCrowdSound,
     zipArray,
-    createKeyEffect
+    createKeyListener
 } from 'utils';
 import { ButtonColor, Cookies, Locales, KeyCode } from 'enums';
 import { DEFAULT_LOCALE } from 'app-constants';
@@ -89,9 +89,7 @@ const AppContextProvider: FC = ({ children }) => {
 
     const onPlayCrowdSound: Dispatch<CrowdSounds> = crowdSound => soundEnabled && playCrowdSound(crowdSound);
     const onPlayButtonSound: Dispatch<ButtonColor> = color => soundEnabled && playButtonSound(color);
-    const handleSetCookie = (cookie: Cookies, value: any) => {
-        setCookie(cookie, value, { expires: addYearsToToday(10) });
-    };
+    const handleSetCookie = (cookie: Cookies, value: any) => setCookie(cookie, value, { expires: addYearsToToday(10) });
 
     const setHighScore = () => {
         if (!highScoreInfo || currentRound > highScoreInfo.score) {
@@ -114,7 +112,7 @@ const AppContextProvider: FC = ({ children }) => {
     };
 
     // Starts game after user releases space bar
-    useEffect(createKeyEffect('keyup', KeyCode.SPACE, startGame));
+    useEffect(createKeyListener(KeyCode.SPACE)('keyup', startGame));
 
     const showRoundColors: Dispatch<ButtonColor[]> = colors => {
         const emptyArray = fill(range(colors.length), null);

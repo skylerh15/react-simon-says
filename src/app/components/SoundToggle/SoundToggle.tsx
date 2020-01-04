@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import { useApp } from 'app/context/AppContext';
-import { createKeyEffect } from 'utils';
+import { createKeyListener } from 'utils';
 import { KeyCode } from 'enums';
 
 const SoundToggle: FC = () => {
@@ -11,7 +11,7 @@ const SoundToggle: FC = () => {
 
     const onToggleSound = () => !preventChangeSettings && toggleSound(!soundEnabled);
 
-    useEffect(createKeyEffect('keyup', KeyCode.M, onToggleSound));
+    useEffect(createKeyListener(KeyCode.M)('keyup', onToggleSound));
 
     return (
         <div style={{ paddingTop: '4px' }}>
